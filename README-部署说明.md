@@ -1,7 +1,7 @@
 # 李欣悦 · 赛博朋克个人简历网站（源码包）
 
-## 已上线网址（可直接访问）
-**https://jamil7184-blip.github.io/li-resume/** —— 已部署到 GitHub Pages，评审直接打开即可。
+## 已上线网址（国内访问需梯子）
+**https://jamil7184-blip.github.io/li-resume/** —— 已部署到 GitHub Pages。`n> ⚠️ GitHub Pages 在中国大陆访问受限，需要开启代理（梯子）才能打开；`n> 评审时推荐直接解压本包、双击 index.html 本地打开（无需联网、无需梯子，效果一致）。
 
 ## 这是什么
 完整可部署的静态网站源码。无需服务器/数据库，纯 HTML/CSS/JS + 媒体文件。
@@ -43,4 +43,5 @@
 - 换开屏视频：覆盖 intro-pixabay.mp4
 - 换音乐：覆盖 bgm.mp3
 - 照片/证书/作品：替换 photos/ certs/ works/ 里的图片
+
 
