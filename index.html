@@ -437,7 +437,7 @@ section{position:relative;padding:96px 6vw;max-width:1180px;margin:0 auto}
 .mood-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:22px}
 .mood-card{padding:24px 18px 20px;text-align:center;transition:transform .3s,box-shadow .3s;position:relative;overflow:hidden}
 .mood-card:hover{transform:translateY(-6px);box-shadow:0 16px 46px rgba(0,0,0,.5),0 0 30px rgba(0,229,255,.15)}
-.mood-card .mood-svg{width:110px;height:110px;margin:0 auto 8px}
+.mood-card .mood-svg{width:110px;height:110px;margin:0 auto 8px;object-fit:contain;filter:drop-shadow(0 0 10px rgba(0,229,255,.35))}
 .mood-card h4{color:#fff;letter-spacing:.18em;font-size:14px}
 .mood-card p{color:var(--dim);font-size:12px;line-height:1.8;margin-top:8px}
 .mood-card .code{position:absolute;top:10px;left:12px;font-family:var(--mono);font-size:9px;color:var(--dim);opacity:.6}
@@ -1048,11 +1048,11 @@ footer .ft-copy{margin-top:26px;font-size:11px;color:var(--dim);opacity:.7;lette
       <div class="mbti-tag">身份特征：<b>-T 动荡</b> &middot; 情绪易波动 / 自信果断 0%</div>
     </div>
     <div class="mood-grid" style="margin-top:24px">
-      <div class="mood-card glass reveal d1"><span class="code">[01]</span><div class="mood-svg" data-mood="think"></div><h4>思考</h4><p>喜欢一个人安静地想问题，把事情拆开看本质。</p></div>
-      <div class="mood-card glass reveal d2"><span class="code">[02]</span><div class="mood-svg" data-mood="curious"></div><h4>好奇</h4><p>对&ldquo;为什么会这样&rdquo;有天然冲动，愿意为了答案熬夜。</p></div>
-      <div class="mood-card glass reveal d2"><span class="code">[03]</span><div class="mood-svg" data-mood="happy"></div><h4>开心</h4><p>一点点小成就就能开心很久，喜欢分享快乐。</p></div>
-      <div class="mood-card glass reveal d3"><span class="code">[04]</span><div class="mood-svg" data-mood="camera"></div><h4>摄影师眼</h4><p>习惯观察光影和瞬间，用照片记录生活的细节。</p></div>
-      <div class="mood-card glass reveal d3"><span class="code">[05]</span><div class="mood-svg" data-mood="botfriend"></div><h4>机器人伙伴</h4><p>相信机器人可以是伙伴，而不仅仅是工具。</p></div>
+      <div class="mood-card glass reveal d1"><span class="code">[01]</span><img class="mood-svg" src="icons/mood-think.png" alt="思考" loading="lazy"><h4>思考</h4><p>喜欢一个人安静地想问题，把事情拆开看本质。</p></div>
+      <div class="mood-card glass reveal d2"><span class="code">[02]</span><img class="mood-svg" src="icons/mood-curious.png" alt="好奇" loading="lazy"><h4>好奇</h4><p>对&ldquo;为什么会这样&rdquo;有天然冲动，愿意为了答案熬夜。</p></div>
+      <div class="mood-card glass reveal d2"><span class="code">[03]</span><img class="mood-svg" src="icons/mood-happy.png" alt="开心" loading="lazy"><h4>开心</h4><p>一点点小成就就能开心很久，喜欢分享快乐。</p></div>
+      <div class="mood-card glass reveal d3"><span class="code">[04]</span><img class="mood-svg" src="icons/mood-camera.png" alt="摄影师眼" loading="lazy"><h4>摄影师眼</h4><p>习惯观察光影和瞬间，用照片记录生活的细节。</p></div>
+      <div class="mood-card glass reveal d3"><span class="code">[05]</span><img class="mood-svg" src="icons/mood-botfriend.png" alt="机器人伙伴" loading="lazy"><h4>机器人伙伴</h4><p>相信机器人可以是伙伴，而不仅仅是工具。</p></div>
     </div>
     <div class="traits-grid">
       <div class="trait-card glass reveal d1">
@@ -5389,7 +5389,7 @@ function moodSVG(m){
   return `<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><defs><filter id="g1" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="1.6"/></filter></defs>${hairB}${body}${head}${extra}</svg>`;
 }
 
-$$('.mood-svg').forEach(el=>{ el.innerHTML=moodSVG(el.dataset.mood); });
+$$('.mood-svg[data-mood]').forEach(el=>{ el.innerHTML=moodSVG(el.dataset.mood); });
 /* ============================================================
    交互：滚动、技能条、灯箱、导航、按钮
    ============================================================ */
