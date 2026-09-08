@@ -1274,7 +1274,17 @@ function updateCamera(dt){
   }
   // 固定居中俯视（经典视角），滚轮缩放
   const k=1-Math.exp(-6*dt);
-  const dy=20/state.zoom, dback=5/state.zoom;
+  // 竖屏(手机)自适应：抬高相机，让整张地图宽度完整显示；横屏(电脑)保持原样
+  let dy=20, dback=5;
+  const _asp = (Renderer.W||innerWidth) / Math.max(Renderer.H||innerHeight, 1);
+  if(_asp < 0.9){
+    const _vHalf = Renderer.cam.fov*Math.PI/360;
+    const _hHalf = Math.atan(Math.tan(_vHalf) * Math.max(_asp, 0.22));
+    const _needHalf = HALF + 2.2;
+    dy = Math.min(52, Math.max(15, _needHalf / Math.tan(Math.max(_hHalf, 0.08))));
+    dback = 1.5;
+  }
+  dy/=state.zoom; dback/=state.zoom;
   cam.x=lerp(cam.x,0,k);
   cam.y=lerp(cam.y,dy,k);
   cam.z=lerp(cam.z,dback,k);
