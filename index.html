@@ -1186,14 +1186,7 @@ footer .ft-copy{margin-top:26px;font-size:11px;color:var(--dim);opacity:.7;lette
     </div>
   </section>
 
-  <!-- 坦克大战 全屏游戏弹层 -->
-  <div id="gameOverlay" aria-hidden="true">
-    <div class="go-top">
-      <span class="go-t">&#127918; <b>坦克大战 3D</b> · Hello Kitty</span>
-      <button class="go-close" id="tankClose" type="button">&#10006; 返回个人页</button>
-    </div>
-    <iframe id="tankFrame" src="works/tank.html" title="坦克大战 3D" allow="fullscreen"></iframe>
-  </div>
+
 </main>
 
 <footer>
@@ -5657,7 +5650,7 @@ async function bootLoader(){
 }
 
 /* 作品：打开 / 关闭坦克大战游戏 */
-(function(){
+document.addEventListener('DOMContentLoaded',function(){
   const ov=document.getElementById('gameOverlay'), fr=document.getElementById('tankFrame');
   const openers=document.querySelectorAll('#tankOpen, #tankOpen .start-btn');
   const openGame=function(ev){ if(ev) ev.stopPropagation();
@@ -5673,7 +5666,16 @@ async function bootLoader(){
   openers.forEach(function(el){ el.addEventListener('click', openGame); });
   const cl=document.getElementById('tankClose'); if(cl) cl.addEventListener('click', closeGame);
   document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeGame(); });
-})();
+});
 </script>
+  <!-- 坦克大战 全屏游戏弹层 -->
+  <div id="gameOverlay" aria-hidden="true">
+    <div class="go-top">
+      <span class="go-t">&#127918; <b>坦克大战 3D</b> · Hello Kitty</span>
+      <button class="go-close" id="tankClose" type="button">&#10006; 返回个人页</button>
+    </div>
+    <iframe id="tankFrame" src="works/tank.html" title="坦克大战 3D" allow="fullscreen"></iframe>
+  </div>
+
 </body>
 </html>
