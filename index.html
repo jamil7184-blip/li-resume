@@ -631,6 +631,32 @@ section{position:relative;padding:96px 6vw;max-width:1180px;margin:0 auto}
 .work-card p{color:var(--dim);font-size:12px;line-height:1.8;padding:4px 18px 8px}
 .work-card .wtag{padding:0 18px 18px;font-family:var(--mono);font-size:10px;color:var(--cyan);letter-spacing:.1em}
 
+/* 作品展示 · 可试玩游戏卡 */
+.work-grid.tank{grid-template-columns:1fr;max-width:680px;margin:0 auto}
+.tank-card{cursor:pointer}
+.tank-cover{height:340px;position:relative}
+.tank-cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.tank-cover .play-badge{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:78px;height:78px;border-radius:50%;
+  background:rgba(255,45,120,.88);display:flex;align-items:center;justify-content:center;font-size:30px;color:#fff;padding-left:6px;
+  box-shadow:0 0 34px rgba(255,45,120,.85);border:2px solid rgba(255,255,255,.9);transition:transform .25s}
+.tank-card:hover .play-badge{transform:translate(-50%,-50%) scale(1.12)}
+.tank-card .start-btn{margin:4px 18px 20px;width:calc(100% - 36px);padding:13px;border:1px solid var(--pink);color:var(--pink);
+  background:rgba(255,45,120,.08);border-radius:10px;font-family:var(--mono);font-size:13px;letter-spacing:.22em;cursor:pointer;transition:.25s}
+.tank-card .start-btn:hover{background:rgba(255,45,120,.22);box-shadow:0 0 20px rgba(255,45,120,.45)}
+@media (max-width:600px){.tank-cover{height:220px}}
+/* 全屏游戏弹层 */
+#gameOverlay{position:fixed;inset:0;z-index:400;display:none;background:#05060d}
+#gameOverlay.on{display:flex;flex-direction:column}
+#gameOverlay .go-top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 16px;flex:none;
+  background:rgba(10,12,22,.97);border-bottom:1px solid rgba(255,45,120,.4);color:#fff;font-family:var(--mono);font-size:13px;letter-spacing:.16em}
+#gameOverlay .go-top .go-t{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#gameOverlay .go-top b{color:#ff9ad5}
+#gameOverlay .go-close{border:1px solid rgba(255,255,255,.35);background:transparent;color:#fff;padding:7px 16px;border-radius:8px;
+  cursor:pointer;font-size:12px;letter-spacing:.12em;flex:none;transition:.2s}
+#gameOverlay .go-close:hover{background:rgba(255,45,120,.28);border-color:var(--pink)}
+#gameOverlay iframe{flex:1;width:100%;border:0;background:#101018}
+body.lock-scroll{overflow:hidden}
+
 /* ---------- Footer ---------- */
 footer{margin-top:80px;border-top:1px solid var(--line);padding:54px 6vw 40px;text-align:center;position:relative;overflow:hidden}
 footer .ft-name{font-size:22px;letter-spacing:.24em;color:#fff;font-weight:800}
@@ -1146,21 +1172,28 @@ footer .ft-copy{margin-top:26px;font-size:11px;color:var(--dim);opacity:.7;lette
       <h2 class="sec-title">作品展示</h2>
       <p class="sec-desc">正在施工中的作品陈列馆 —— 每完成一个项目，就会在这里点亮一盏灯。</p>
     </div>
-    <div class="work-grid">
-      <div class="work-card glass reveal d1">
-        <div class="work-thumb has-img"><img src="works/robot-01.jpg" alt="我的第一个机器人项目" loading="lazy"><span class="wt-label">PROJECT_01 · 已点亮</span></div>
-        <h4>第一个机器人项目</h4>
-        <p>我的第一个机器人项目 &mdash;&mdash; 亲手搭起来的第一个&ldquo;作品&rdquo;。从想法到零件，再到它动起来的那一刻。</p>
-        <div class="wtag" style="color:var(--green)">STATUS: 已点亮</div>
-      </div>
-      <div class="work-card glass reveal d3">
-        <div class="work-thumb has-img"><img src="welcome-bg.jpg" alt="WELCOME TO MY WORLD" loading="lazy"><span class="wt-label">PROJECT_03 · 已点亮</span></div>
-        <h4>这个网站本身</h4>
-        <p>一场赛博朋克风格的个人简历实验 &mdash;&mdash; 从 <b>WELCOME TO MY WORLD</b> 开始，进入我的世界。</p>
-        <div class="wtag" style="color:var(--green)">STATUS: v1 ONLINE</div>
+    <div class="work-grid tank">
+      <div class="work-card glass reveal d1 tank-card" id="tankOpen">
+        <div class="work-thumb tank-cover has-img">
+          <img src="works/tank-cover.jpg" alt="坦克大战 3D · Hello Kitty" loading="lazy">
+          <span class="wt-label">PROJECT · 浏览器可试玩</span>
+          <span class="play-badge">&#9654;</span>
+        </div>
+        <h4>坦克大战 3D · Hello Kitty</h4>
+        <p>自己动手做的 3D 坦克小游戏 &mdash;&mdash; 粉色 Hello Kitty 坦克，多张地形地图可选，点击下方按钮即可在这个网站里直接开玩。</p>
+        <button class="start-btn" type="button">&#9654; 开始游戏</button>
       </div>
     </div>
   </section>
+
+  <!-- 坦克大战 全屏游戏弹层 -->
+  <div id="gameOverlay" aria-hidden="true">
+    <div class="go-top">
+      <span class="go-t">&#127918; <b>坦克大战 3D</b> · Hello Kitty</span>
+      <button class="go-close" id="tankClose" type="button">&#10006; 返回个人页</button>
+    </div>
+    <iframe id="tankFrame" src="works/tank.html" title="坦克大战 3D" allow="fullscreen"></iframe>
+  </div>
 </main>
 
 <footer>
@@ -5622,7 +5655,25 @@ async function bootLoader(){
   }
   $('#loader').classList.add('off');
 }
+
+/* 作品：打开 / 关闭坦克大战游戏 */
+(function(){
+  const ov=document.getElementById('gameOverlay'), fr=document.getElementById('tankFrame');
+  const openers=document.querySelectorAll('#tankOpen, #tankOpen .start-btn');
+  const openGame=function(ev){ if(ev) ev.stopPropagation();
+    if(!ov) return;
+    ov.classList.add('on'); ov.setAttribute('aria-hidden','false'); document.body.classList.add('lock-scroll');
+    if(fr){ try{ fr.src='works/tank.html'; }catch(e){} }
+  };
+  const closeGame=function(){
+    if(!ov) return;
+    ov.classList.remove('on'); ov.setAttribute('aria-hidden','true'); document.body.classList.remove('lock-scroll');
+    if(fr){ try{ fr.src='about:blank'; }catch(e){} }
+  };
+  openers.forEach(function(el){ el.addEventListener('click', openGame); });
+  const cl=document.getElementById('tankClose'); if(cl) cl.addEventListener('click', closeGame);
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeGame(); });
+})();
 </script>
 </body>
 </html>
-
